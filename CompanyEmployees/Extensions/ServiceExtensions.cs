@@ -2,7 +2,7 @@ namespace CompanyEmployees.Extensions;
 
 /*
  * An extension method is inherently a static method.
- * It accepts this as the firs parameter and this represents the data type of the objet which will be using that extension method.
+ * It accepts this as the first parameter and this represents the data type of the objet which will be using that extension method.
  * It can be chained with other extension methods.
  */
 
@@ -31,4 +31,16 @@ public static class ServiceExtensions
                     .AllowAnyMethod()
                     .AllowAnyHeader())
         );
+    
+    /*
+     * ASP.NET by default => self-hosted
+     * if we want to host on IIS => configure IIS integration => help deployment to IIS
+     * For now no configuration
+     * 
+     */
+    
+    public static void ConfigureIISIntegration(this IServiceCollection services) =>
+    services.Configure<IISOptions>(options => {});
+    
+    
 }
