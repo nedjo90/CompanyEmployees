@@ -48,4 +48,4 @@ Configure request delegates (extension methods):
 
 Execute component in the same order, placed in the code (top to bottom):
 
-![Screenshot 2024-04-06 at 12.18.31.png](..%2F..%2FDesktop%2FScreenshot%202024-04-06%20at%2012.18.31.png)
+![Screenshot 2024-04-06 at 12.18.31.png](images%2FScreenshot%202024-04-06%20at%2012.18.31.png)
