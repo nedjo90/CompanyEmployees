@@ -32,8 +32,12 @@ builder.Services.ConfigureRepositoryManager();
 // Add Service Manager services to the container => ServiceExtensions 
 builder.Services.ConfigureServiceManager();
 
+// Add Sql Context to the container => ServiceExtensions
+builder.Services.ConfigureSqlContext(builder.Configuration);
+
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+ .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
 
 
 var app = builder.Build();
