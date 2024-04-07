@@ -15,6 +15,7 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
         <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
         <ProjectReference Include="..\Repository\Repository.csproj" />
+        <ProjectReference Include="..\Service\Service.csproj" />
     </ItemGroup>
 
 </Project>

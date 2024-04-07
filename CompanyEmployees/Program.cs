@@ -25,6 +25,13 @@ builder.Services.ConfigureIISIntegration();
 // Add Logger Services to the container => ServiceExtensions
 builder.Services.ConfigureLoggerService();
 
+
+// Add Repository Manager services to the container => ServiceExtensions
+builder.Services.ConfigureRepositoryManager();
+
+// Add Service Manager services to the container => ServiceExtensions 
+builder.Services.ConfigureServiceManager();
+
 // Add services to the container.
 builder.Services.AddControllers();
 
