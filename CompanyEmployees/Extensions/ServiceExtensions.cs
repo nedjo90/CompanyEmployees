@@ -65,5 +65,8 @@ public static class ServiceExtensions
                     ServerVersion.AutoDetect(configuration.GetConnectionString("Default")))
         );
 
+    public static IMvcBuilder AddCustomCSVFormatters(this IMvcBuilder builder) =>
+        builder.AddMvcOptions(config =>
+            config.OutputFormatters.Add(new CsvOutputFormatter()));
     
 }

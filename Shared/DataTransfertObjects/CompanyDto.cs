@@ -1,6 +1,11 @@
 namespace Shared.DataTransfertObjects;
 
-public record CompanyDto(Guid Id, string Name, string FullAddress);
+public record CompanyDto
+{
+    public Guid Id { get; init; }
+    public string? Name { get; init; }
+    public string? FullAddress { get; init; }
+}
 
 //A record type is immutable and has a default constructor
 //This means, record's instance property cannot be changed
