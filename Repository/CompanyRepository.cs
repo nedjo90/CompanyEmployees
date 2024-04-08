@@ -16,9 +16,7 @@ public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
             .ToList();
     }
 
-    public Company GetCompany(Guid companyId, bool trackChanges)
-    {
-        return FindByCondition(c => c.Id.Equals(companyId), trackChanges)
+    public Company GetCompany(Guid companyId, bool trackChanges) =>
+        FindByCondition(c => c.Id.Equals(companyId), trackChanges)
             .SingleOrDefault();
-    }
 }

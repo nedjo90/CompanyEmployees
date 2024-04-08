@@ -40,7 +40,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 // Add services to the container.
 builder.Services.AddControllers()
- .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+ .AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
 
 
 
@@ -48,6 +48,8 @@ var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);
+
+
 if (app.Environment.IsProduction())
  app.UseHsts();
 

@@ -1,4 +1,4 @@
-﻿namespace Presentation;
+﻿namespace CompanyEmployees.Presentation;
 
 public static class AssemblyReference 
 {
