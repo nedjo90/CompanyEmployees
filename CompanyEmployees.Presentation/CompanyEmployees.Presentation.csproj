@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Presentation</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions">
+        <HintPath>..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.3\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+        <HintPath>..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.3\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

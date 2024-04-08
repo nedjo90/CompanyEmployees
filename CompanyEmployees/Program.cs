@@ -35,6 +35,7 @@ builder.Services.ConfigureServiceManager();
 // Add Sql Context to the container => ServiceExtensions
 builder.Services.ConfigureSqlContext(builder.Configuration);
 
+
 // Add services to the container.
 builder.Services.AddControllers()
  .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
@@ -42,8 +43,14 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+ app.UseDeveloperExceptionPage();
+else
+ app.UseHsts();
+
+
 // Configure the HTTP request pipeline.
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 //enables using static files for the request. If
 // we don’t set a path to the static files directory, it will use a wwwroot

@@ -7,8 +7,8 @@ public sealed class RepositoryManager : IRepositoryManager
     private readonly RepositoryContext _repositoryContext;
     private readonly Lazy<ICompanyRepository> _companyRepository;
     private readonly Lazy<IEmployeeRepository> _employeeRepository;
-    public ICompanyRepository Company { get; }
-    public IEmployeeRepository Employee { get; }
+    public ICompanyRepository Company => _companyRepository.Value;
+    public IEmployeeRepository Employee => _employeeRepository.Value;
 
     public RepositoryManager(RepositoryContext repositoryContext)
     {

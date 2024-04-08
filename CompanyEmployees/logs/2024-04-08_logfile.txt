@@ -1,0 +1,10 @@
+2024-04-08 01:53:39.0590 ERROR Something went wrong in the GetAllCompanies service method System.NullReferenceException: Object reference not set to an instance of an object.
+   at Service.CompanyService.GetAllCompanies(Boolean trackChanges) in /Users/necatihan/RiderProjects/CompanyEmployees/Service/CompanyService.cs:line 22
+2024-04-08 01:56:15.6790 ERROR Something went wrong in the GetAllCompanies service method System.NullReferenceException: Object reference not set to an instance of an object.
+   at Service.CompanyService.GetAllCompanies(Boolean trackChanges) in /Users/necatihan/RiderProjects/CompanyEmployees/Service/CompanyService.cs:line 22
+2024-04-08 01:56:33.5185 ERROR Something went wrong in the GetAllCompanies service method System.NullReferenceException: Object reference not set to an instance of an object.
+   at Service.CompanyService.GetAllCompanies(Boolean trackChanges) in /Users/necatihan/RiderProjects/CompanyEmployees/Service/CompanyService.cs:line 22
+2024-04-08 02:01:20.0473 ERROR Something went wrong in the GetAllCompanies service method System.NullReferenceException: Object reference not set to an instance of an object.
+   at Service.CompanyService.GetAllCompanies(Boolean trackChanges) in /Users/necatihan/RiderProjects/CompanyEmployees/Service/CompanyService.cs:line 22
+2024-04-08 02:14:06.4930 ERROR Something went wrong in the GetAllCompanies service method System.NullReferenceException: Object reference not set to an instance of an object.
+   at Service.CompanyService.GetAllCompanies(Boolean trackChanges) in /Users/necatihan/RiderProjects/CompanyEmployees/Service/CompanyService.cs:line 22

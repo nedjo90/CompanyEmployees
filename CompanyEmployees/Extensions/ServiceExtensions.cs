@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
 using Service.Contracts;
-using ILoggerManager = LoggerService.ILoggerManager;
 
 namespace CompanyEmployees.Extensions;
 
@@ -66,4 +65,5 @@ public static class ServiceExtensions
                     ServerVersion.AutoDetect(configuration.GetConnectionString("Default")))
         );
 
+    
 }

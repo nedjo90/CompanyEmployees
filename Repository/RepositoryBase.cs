@@ -15,16 +15,20 @@ public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     
     public IQueryable<T> FindAll(bool trackChanges)
     {
-        if (!trackChanges)
-            return RepositoryContext.Set<T>().AsNoTracking();
-        return RepositoryContext.Set<T>();        
+        return !trackChanges ?
+            RepositoryContext.Set<T>()
+                .AsNoTracking() :
+            RepositoryContext.Set<T>();        
     }
 
     public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
     {
-        if (!trackChanges)
-            return RepositoryContext.Set<T>().Where(expression).AsNoTracking();
-        return RepositoryContext.Set<T>().Where(expression);
+        return !trackChanges ?
+            RepositoryContext.Set<T>()
+                .Where(expression)
+                .AsNoTracking() :
+            RepositoryContext.Set<T>()
+                .Where(expression);
     }
 
     public void Create(T entity)

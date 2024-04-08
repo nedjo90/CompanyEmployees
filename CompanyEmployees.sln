@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyEmployees", "CompanyEmployees\CompanyEmployees.csproj", "{DD6D91BC-8DFD-43BD-BDAC-F1CA1D3475CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareExample", "MiddlewareExample\MiddlewareExample.csproj", "{70DD3044-E488-4C06-B79A-EBC48C4D097F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{F412730D-6E2B-409F-8046-B67B61924D9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{463C0CF3-B021-4A04-B084-22B99E685617}"
@@ -16,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{06862AF2-493D-420A-B3AC-BC7E60042B06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{4BC8681F-1A03-4218-868C-4DD7F0F64030}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyEmployees.Presentation", "CompanyEmployees.Presentation\CompanyEmployees.Presentation.csproj", "{4BC8681F-1A03-4218-868C-4DD7F0F64030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +26,6 @@ Global
 		{DD6D91BC-8DFD-43BD-BDAC-F1CA1D3475CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD6D91BC-8DFD-43BD-BDAC-F1CA1D3475CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD6D91BC-8DFD-43BD-BDAC-F1CA1D3475CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70DD3044-E488-4C06-B79A-EBC48C4D097F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70DD3044-E488-4C06-B79A-EBC48C4D097F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70DD3044-E488-4C06-B79A-EBC48C4D097F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70DD3044-E488-4C06-B79A-EBC48C4D097F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F412730D-6E2B-409F-8046-B67B61924D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F412730D-6E2B-409F-8046-B67B61924D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F412730D-6E2B-409F-8046-B67B61924D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
