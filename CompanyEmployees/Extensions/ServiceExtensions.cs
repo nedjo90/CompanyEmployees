@@ -65,6 +65,7 @@ public static class ServiceExtensions
                     ServerVersion.AutoDetect(configuration.GetConnectionString("Default")))
         );
 
+    // ReSharper disable once InconsistentNaming
     public static IMvcBuilder AddCustomCSVFormatters(this IMvcBuilder builder) =>
         builder.AddMvcOptions(config =>
             config.OutputFormatters.Add(new CsvOutputFormatter()));

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
+using Shared.DataTransfertObjects;
 
 namespace CompanyEmployees.Presentation.Controllers;
 
@@ -22,11 +23,40 @@ public class EmployeesController : ControllerBase
         return Ok(employees);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid}", Name="GetEmployeeForCompany")]
     public IActionResult GetEmployeeForCompany(Guid companyId, Guid id)
     {
         var employee = 
             _service.EmployeeService.GetEmployee(companyId, id, trackChanges: false);
         return Ok(employee);
+    }
+
+    [HttpPost]
+    public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto? employee)
+    {
+        if (employee is null)
+        {
+            return BadRequest("EmployeeForCreationDto object is null");
+        }
+        var employeeToReturn =
+            _service.EmployeeService.CreateEmployeeForCompany(companyId, employee, trackChanges: false);
+        return CreatedAtRoute("GetEmployeeForCompany", new { companyId, id = employeeToReturn.Id }, employeeToReturn);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public IActionResult DeleteEmployeeForCompany(Guid companyId, Guid id)
+    {
+        _service.EmployeeService.DeleteEmployeeForCompany(companyId, id, trackChanges: false);
+        return NoContent();
+    }
+
+    [HttpPut("{id:guid}")]
+    public IActionResult UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto? employee)
+    {
+        if (employee is null)
+            return BadRequest("EmployeeForUpdateDto object is null");
+        _service.EmployeeService
+            .UpdateEmployeeForCompany(companyId, id, employee, compTrackChanges: false, empTrackChanges: true);
+        return NoContent();
     }
 }
