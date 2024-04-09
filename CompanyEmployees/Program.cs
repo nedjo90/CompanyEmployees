@@ -1,4 +1,5 @@
 using CompanyEmployees.Extensions;
+using CompanyEmployees.Presentation.ActionFilters;
 using Contracts;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,9 @@ builder.Services.Configure<ApiBehaviorOptions>(
   options.SuppressModelStateInvalidFilter = true;
  }
 );
+
+//
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 // Add services to the container.
 builder.Services.AddControllers(
