@@ -2,6 +2,8 @@ using CompanyEmployees.Extensions;
 using Contracts;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Options;
 using NLog;
 
 
@@ -52,10 +54,11 @@ builder.Services.AddControllers(
   {
    config.RespectBrowserAcceptHeader = true;
    config.ReturnHttpNotAcceptable = true;
+   config.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
   })
  .AddXmlDataContractSerializerFormatters()
  .AddCustomCSVFormatters()
-.AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
+ .AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
 
 
 
@@ -100,3 +103,11 @@ app.MapControllers();
 
 
 app.Run();
+
+NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter(){
+ 
+ return new ServiceCollection().AddLogging().AddMvc().AddNewtonsoftJson()
+  .Services.BuildServiceProvider()
+  .GetRequiredService<IOptions<MvcOptions>>().Value.InputFormatters
+  .OfType<NewtonsoftJsonPatchInputFormatter>().First();
+}
