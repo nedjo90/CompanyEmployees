@@ -55,6 +55,7 @@ public class CompaniesController : ControllerBase
             await _service.CompanyService.CreateCompanyCollectionAsync(companyCollection);
         return CreatedAtRoute("CompanyCollection", new { result.ids }, result.companies);
     }
+    
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteCompany(Guid id)

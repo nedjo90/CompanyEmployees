@@ -90,7 +90,7 @@ internal sealed class CompanyService : ICompanyService
         
         var companyCollectionToReturn = 
             _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
-        var ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
+        string ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
         return (companies: companyCollectionToReturn, ids: ids);
     }
 
