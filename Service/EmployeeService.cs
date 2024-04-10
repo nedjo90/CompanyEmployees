@@ -42,6 +42,8 @@ public class EmployeeService : IEmployeeService
     {
         await CheckIfCompanyExists(companyId, trackChanges);
 
+        if (!employeeParameters.ValidAgeRange)
+            throw new MaxAgeRangeBadRequestException();
         var employeesWithMetaData =
             await _repository.Employee.GetEmployeesAsync(companyId, employeeParameters, trackChanges);
         var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesWithMetaData);
