@@ -44,7 +44,7 @@ namespace CompanyEmployees.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
 
                     b.HasData(
                         new
@@ -90,7 +90,7 @@ namespace CompanyEmployees.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
 
                     b.HasData(
                         new
@@ -223,13 +223,13 @@ namespace CompanyEmployees.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8d3e9e63-38bd-4f73-8bf9-ca069924f02e",
+                            Id = "da3b0c76-1092-4ddc-b5fd-c38fffb8857e",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "f803857a-7988-4338-b50b-28c6a03f3043",
+                            Id = "2ae6092a-b270-4e37-81f5-5597997541f4",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
