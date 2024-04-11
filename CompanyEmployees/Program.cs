@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using CompanyEmployees.Extensions;
 using CompanyEmployees.Presentation.ActionFilters;
 using CompanyEmployees.Utility;
@@ -61,6 +62,13 @@ builder.Services.AddScoped<ValidateMediaTypeAttribute>();
 
 builder.Services.AddScoped<IEmployeeLinks, EmployeeLinks>();
 
+builder.Services.ConfigureResponseCaching();
+builder.Services.ConfigureHttpCacheHeaders();
+builder.Services.AddMemoryCache();
+
+builder.Services.ConfigureRateLimitingOptions();
+builder.Services.AddHttpContextAccessor();
+
 // Add services to the container.
 builder.Services.AddControllers(
   config =>
@@ -68,6 +76,10 @@ builder.Services.AddControllers(
    config.RespectBrowserAcceptHeader = true;
    config.ReturnHttpNotAcceptable = true;
    config.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
+   config.CacheProfiles.Add("120SecondsDuration", new CacheProfile
+   {
+    Duration = 120
+   });
   })
  .AddXmlDataContractSerializerFormatters()
  .AddCustomCSVFormatters()
@@ -106,8 +118,15 @@ app.UseForwardedHeaders( new ForwardedHeadersOptions
   ForwardedHeaders = ForwardedHeaders.All
  });
 
+app.UseIpRateLimiting();
+
 // enable middleware to the pipeline to enable CORS.
 app.UseCors("CorsPolicy");
+
+
+app.UseResponseCaching();
+
+app.UseHttpCacheHeaders();
 
 //enable authorization middleware, allowing you to control access to different parts of your application based on user roles or policies.
 app.UseAuthorization();

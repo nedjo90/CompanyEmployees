@@ -1,5 +1,6 @@
 using CompanyEmployees.Presentation.ActionFilters;
 using CompanyEmployees.Presentation.ModelBinders;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransfertObjects;
@@ -14,7 +15,7 @@ public class CompaniesController : ControllerBase
 
     public CompaniesController(IServiceManager service) => _service = service;
 
-    [HttpGet]
+    [HttpGet(Name = "GetCompanies")]
     public async Task<IActionResult> GetCompanies()
     {
         var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
@@ -23,13 +24,15 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "CompanyById")]
+    [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]
+    [HttpCacheValidation(MustRevalidate = false)]
     public async Task<IActionResult> GetCompany(Guid id)
     {
         var company = await _service.CompanyService.GetCompanyAsync(id, trackChanges: false);
         return Ok(company);
     }
 
-    [HttpPost]
+    [HttpPost(Name = "CreateCompany")]
     [ServiceFilter(typeof(ValidationFilterAttribute))]
     public async Task<IActionResult> CreateCompany([FromBody]CompanyForCreationDto? company)
     {
@@ -70,5 +73,12 @@ public class CompaniesController : ControllerBase
     {
         await _service.CompanyService.UpdateCompanyAsync(id, company!, trackChanges: true);
         return NoContent();
+    }
+
+    [HttpOptions]
+    public IActionResult GetCompaniesOptions()
+    {
+        Response.Headers.Add("Allow", "GET, OPTIONS, POST");
+        return Ok();
     }
 }
