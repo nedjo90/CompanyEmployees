@@ -2,6 +2,7 @@ using System.Collections;
 using System.Dynamic;
 using System.Reflection;
 using Contracts;
+using Entities.Models;
 
 namespace Service;
 
@@ -14,14 +15,14 @@ public class DataShaper<T> : IDataShaper<T> where T : class
         Properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
     }
     
-    public IEnumerable<ExpandoObject> ShapeData(IEnumerable<T> entities, string fieldsString)
+    public IEnumerable<Entity> ShapeData(IEnumerable<T> entities, string fieldsString)
     {
         IEnumerable<PropertyInfo> requiredProperties = GetRequiredProperties(fieldsString);
         
         return FetchData(entities, requiredProperties);
     }
 
-    public ExpandoObject ShapeData(T entity, string fieldsString)
+    public Entity ShapeData(T entity, string fieldsString)
     {
         IEnumerable<PropertyInfo> requiredProperties = GetRequiredProperties(fieldsString);
         return FetchDataForEntity(entity, requiredProperties);
@@ -50,10 +51,10 @@ public class DataShaper<T> : IDataShaper<T> where T : class
         return requiredProperties;
     }
     
-    private IEnumerable<ExpandoObject> FetchData(IEnumerable<T> entities,
+    private IEnumerable<Entity> FetchData(IEnumerable<T> entities,
         IEnumerable<PropertyInfo> requiredProperties)
     {
-        List<ExpandoObject> shapedData = new List<ExpandoObject>();
+        List<Entity> shapedData = new List<Entity>();
         foreach (var entity in entities)
         {
             var shapedObject = FetchDataForEntity(entity, requiredProperties);
@@ -62,9 +63,9 @@ public class DataShaper<T> : IDataShaper<T> where T : class
         return shapedData;
     }
 
-    private ExpandoObject FetchDataForEntity(T entity, IEnumerable<PropertyInfo> requiredProperties)
+    private Entity FetchDataForEntity(T entity, IEnumerable<PropertyInfo> requiredProperties)
     {
-        var shapedObject = new ExpandoObject();
+        var shapedObject = new Entity();
         foreach (var property in requiredProperties)
         {
             var objectPropertyValue = property.GetValue(entity);
