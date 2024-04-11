@@ -13,12 +13,6 @@ public class MappingProfile : Profile
                 opt => 
                     opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
         
-        // CreateMap<Company, CompanyDto>()
-        //     .ForCtorParam("FullAddress",
-        //         opt => 
-        //             opt.MapFrom(src => string.Join(' ', src.Address, src.Country))
-        //     );
-        
         CreateMap<Employee, EmployeeDto>();
 
         CreateMap<CompanyForCreationDto, Company>();
@@ -30,5 +24,7 @@ public class MappingProfile : Profile
         CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
 
         CreateMap<CompanyForUpdateDto, Company>();
+
+        CreateMap<UserForRegistrationDto, User>();
     }
 }

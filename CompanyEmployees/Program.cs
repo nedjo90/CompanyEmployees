@@ -69,6 +69,9 @@ builder.Services.AddMemoryCache();
 builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
+
 // Add services to the container.
 builder.Services.AddControllers(
   config =>
@@ -128,6 +131,8 @@ app.UseResponseCaching();
 
 app.UseHttpCacheHeaders();
 
+
+app.UseAuthentication();
 //enable authorization middleware, allowing you to control access to different parts of your application based on user roles or policies.
 app.UseAuthorization();
 
