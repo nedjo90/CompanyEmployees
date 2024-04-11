@@ -3,6 +3,7 @@ using System.Dynamic;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using Entities.LinkModels;
 
 namespace Entities.Models;
 
@@ -68,8 +69,21 @@ public class Entity : DynamicObject, IXmlSerializable, IDictionary<string, objec
 
 	private void WriteLinksToXml(string key, object value, XmlWriter writer)
 	{
-		writer.WriteStartElement(key);
-		writer.WriteString(value.ToString());
+		if (value.GetType() == typeof(List<Link>))
+		{
+			foreach (Link val in value as List<Link>)
+			{
+				writer.WriteStartElement(nameof(Link));
+				WriteLinksToXml(nameof(val.Href), val.Href, writer);
+				writer.WriteElementString(nameof(val.Method), val.Method.ToString());
+				writer.WriteElementString(nameof(val.Rel), val.Rel);
+				writer.WriteEndElement();
+			}
+		}
+		else
+		{
+			writer.WriteString(value.ToString());
+		}
 		writer.WriteEndElement();
 	}
 

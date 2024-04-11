@@ -1,5 +1,6 @@
 using CompanyEmployees.Extensions;
 using CompanyEmployees.Presentation.ActionFilters;
+using CompanyEmployees.Utility;
 using Contracts;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -56,6 +57,10 @@ builder.Services.AddScoped<ValidationFilterAttribute>();
 
 builder.Services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
 
+builder.Services.AddScoped<ValidateMediaTypeAttribute>();
+
+builder.Services.AddScoped<IEmployeeLinks, EmployeeLinks>();
+
 // Add services to the container.
 builder.Services.AddControllers(
   config =>
@@ -68,6 +73,7 @@ builder.Services.AddControllers(
  .AddCustomCSVFormatters()
  .AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
 
+builder.Services.AddCustomMediaTypes();
 
 
 var app = builder.Build();
