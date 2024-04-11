@@ -20,7 +20,8 @@ public class CompaniesController : ControllerBase
     [Authorize(Roles = "Manager")]
     public async Task<IActionResult> GetCompanies()
     {
-        var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
+        IEnumerable<CompanyDto> companies = 
+            await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
 
         return Ok(companies);
     }

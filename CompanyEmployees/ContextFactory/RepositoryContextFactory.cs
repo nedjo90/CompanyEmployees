@@ -8,12 +8,13 @@ public class RepositoryContextFactory : IDesignTimeDbContextFactory<RepositoryCo
 {
     public RepositoryContext CreateDbContext(string[] args)
     {
-        var configuration = new ConfigurationBuilder()
+        IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json")
             .Build();
 
-        var builder = new DbContextOptionsBuilder<RepositoryContext>()
+        DbContextOptionsBuilder<RepositoryContext>? builder = 
+            new DbContextOptionsBuilder<RepositoryContext>()
             .UseMySql(connectionString: configuration.GetConnectionString("Default") ?? throw new InvalidOperationException(),
                 ServerVersion.AutoDetect(configuration.GetConnectionString("Default")),
                 b => b.MigrationsAssembly("CompanyEmployees"));
