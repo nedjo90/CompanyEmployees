@@ -61,7 +61,7 @@ builder.Services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
 builder.Services.AddScoped<ValidateMediaTypeAttribute>();
 
 builder.Services.AddScoped<IEmployeeLinks, EmployeeLinks>();
-
+builder.Services.ConfigureVersioning();
 builder.Services.ConfigureResponseCaching();
 builder.Services.ConfigureHttpCacheHeaders();
 builder.Services.AddMemoryCache();
@@ -72,6 +72,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.AddJwtConfiguration(builder.Configuration);
+builder.Services.ConfigureSwagger();
 
 // Add services to the container.
 builder.Services.AddControllers(
@@ -91,6 +93,11 @@ builder.Services.AddControllers(
 
 builder.Services.AddCustomMediaTypes();
 
+// builder.Services.AddHttpsRedirection(options =>
+// {
+//  options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+//  options.HttpsPort = 5001;
+// });
 
 var app = builder.Build();
 
@@ -98,12 +105,15 @@ var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);
 
 
+
 if (app.Environment.IsProduction())
  app.UseHsts();
 
 
+
+
 // Configure the HTTP request pipeline.
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 //enables using static files for the request. If
 // we don’t set a path to the static files directory, it will use a wwwroot
@@ -136,6 +146,13 @@ app.UseHttpCacheHeaders();
 app.UseAuthentication();
 //enable authorization middleware, allowing you to control access to different parts of your application based on user roles or policies.
 app.UseAuthorization();
+
+app.UseSwagger();
+app.UseSwaggerUI(s =>
+{
+ s.SwaggerEndpoint("/swagger/v1/swagger.json", "Code Maze API v1");
+ s.SwaggerEndpoint("/swagger/v2/swagger.json", "Code Maze API v2");
+});
 
 //registers all controller classes in the application with the framework's routing system, allowing them to handle incoming HTTP requests.
 app.MapControllers();
